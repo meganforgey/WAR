@@ -12,7 +12,7 @@ Create two empty arrays of player 1 and player 2's collection of cards.
 When page, loads, show score at 26. When one player clicks, let's play, the game begins and two cards are "flipped over" and shown on screen, replacing the image of the back of the card.
 The program determines who won that round, and adds 1 into the winner's score, and removes 1 from the loser's score. To start another round, a player clicks the Let's Play button again. The game ends when one player has 52 cards, and an alert shows the winner. After 10 seconds, the page reloads, restarting the game. 
 
-##Order of Functions to run
+## Order of Functions to run
 	1. Show back of card
 	2. Set playerCards
     3. Event listeners => play => showFrontOfCard => whoWinsEachRound => flipcardBack => whoWinsFinal
