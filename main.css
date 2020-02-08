@@ -1,0 +1,44 @@
+*{
+    background-color: #FDEEEE;
+    
+}
+
+img {
+    width: 250px;
+    height: 400px;
+  }
+ h1{
+     font-size: 30px;
+     align-self: center;
+ } 
+
+header{
+    font-size: 50px;
+    color: black;
+    background-color: #FDEEEE;
+    text-align: center;
+    text-transform: capitalize;
+}
+body {
+    justify-content: center;
+    font-size: 30px;
+ }
+ 
+ td {
+     border: 2px solid black; 
+     height: 700px;
+     width: 700px;
+     text-align: center;
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     font-size: 25px;
+     cursor: pointer;
+ }
+
+ button {
+    justify-content: center;
+    background-color: red;
+    margin: 20px;
+    padding: 20px 20px 20px 20px;
+    display: inline-block
+ }
+ 
