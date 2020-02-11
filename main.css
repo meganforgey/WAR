@@ -1,7 +1,18 @@
 *{
     background-color: #FDEEEE;
-    
+    d
 }
+
+#p {
+    justify-content: center;
+    background-color: #FDEEEE;
+    font-size: 50px;
+    text-decoration: wavy;
+    margin: 20px;
+    padding: 20px 20px 20px 20px;
+    display: inline-block;
+}
+
 .round-button {
     text-align: center;
     font-size: 40px;
@@ -11,6 +22,9 @@
     padding: 20px 20px 20px 20px;
     display: inline-block;
     font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 img {
@@ -28,7 +42,16 @@ header{
     background-color: red;
     text-align: center;
     text-transform: capitalize;
+    animation-name: hanimation;
+    animation-duration: 10s;
 }
+@keyframes hanimation {
+    0%   {background-color: red;}
+  25%  {background-color: purple;}
+  50%  {background-color: green;}
+  100% {background-color: yellow;}
+}
+
 body {
     justify-content: center;
     font-size: 30px;
@@ -51,5 +74,12 @@ button {
     padding: 20px 20px 20px 20px;
     display: inline-block;
     font-size: 30px;
+    animation: blinker 1s;
  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
  

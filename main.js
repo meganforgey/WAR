@@ -5,45 +5,53 @@ let winner = null;
 let currentPlayer1Card;
 let currentPlayer2Card;
 
-const playerDefinition = {
-    '1' : 'Player One',
-    '-1' : 'Player Two',
-};
+// const playerDefinition = {
+//     '1' : 'Player One',
+//     '-1' : 'Player Two',
+// };
 
  const cards = {
-    value : [1, 2], //3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-    suit : ["hearts"], //'diamonds', 'clubs', 'spades']
+    value : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    suit : ["hearts", 'diamonds', 'clubs', 'spades']
 }
-
 const deck = [];
+
+/*----- cached elements-----*/
+const displayCardOne = document.getElementById("player1-card-back")
+const displayCardTwo = document.getElementById("player2-card-back")
+
 
 /*----- event listeners -----*/
     const playBtn = document.querySelector(".play-button");
     const nextRound = document.querySelector(".round-button");
     playBtn.addEventListener('click', play);
     nextRound.addEventListener('click', playTwo);
-   
 
 
+ /*----- functions -----*/
 //function that takes a value and a suit and constructs a card from it
 function makeDeck (cardData){
     for (let i = 0; i<cardData.suit.length; i++ ){
         for (let v = 0; v<cardData.value.length; v++){
             let newCard = {
                 suit: cardData.suit[i],
-                value: cardData.value[v]
+                value: cardData.value[v],
             }
             deck.push(newCard)
         }
     }
 }
-//console.log(deck)
 
+//need to rename this
 function playTwo(){
-    findCurrent1Card();
-    findCurrent2Card();
-    whoWinsEachRound();
+    removeBackCardClass();
+    currentCards();
     whoWinsFinal();
+}
+
+function removeBackCardClass(){
+    displayCardOne.classList.remove("back-red")
+    displayCardTwo.classList.remove("back-red")
 }
 
 function deal(){ console.log(deck.length)
@@ -52,10 +60,8 @@ function deal(){ console.log(deck.length)
             player1Cards.push(deck[i])
         } else { 
             player2Cards.push(deck[i])
-
         }
     }
-
 }
 //shuffle the deck and put those values into player1 and player2 arrays
 function shuffle(cardData) {
@@ -65,52 +71,62 @@ function shuffle(cardData) {
         }
         return deck;
     }
-//    shuffle(deck);
-//     console.log(deck);
 
-
-// console.log(deck[0].value<deck[1].value)
-
-
-
-// /*----- functions -----*/
-
-
-//  eachRound function need to select the first indexed element from both arrays and compare it to that same index
-//from player2's array, go through that process 26 times, so that index 1 of player 1 and player 2 are always
-//compared with each other, if tie, just move on to next index
-//display on screen 
-//Else if: player 2's card > player 1's card Push player 1's card into player 2's array of 
-
-function findCurrent1Card(){
-    currentPlayer1Card = player1Cards.shift()
-    //console.log(currentPlayer1Card);
-    return currentPlayer1Card;
+function createCardClass(card) {
+    console.log(card);
+    const suit = card.suit[0];
+    
+    console.log(suit)
+    let name = ""
+    if (card.value === 1){
+        name = "A"
+    } else if(card.value < 10){
+        name = "0" + card.value;
+    } else if(card.value === 11){
+        name = "J"
+    } else if(card.value === 12){
+        name = "Q"
+    } else if(card.value === 10){
+        name = "10"
+    } else if(card.value === 13){
+        name = "K"
+    }
+    console.log(suit + name)
+    const cardClass = suit + name;
+    return cardClass;
 }
 
-function findCurrent2Card(){
-    currentPlayer2Card = player2Cards.shift()
-    //console.log(currentPlayer2Card);
-    return currentPlayer2Card;
+function currentCards(){
+    currentPlayer1Card = player1Cards.shift()
+    const cardClass1 = createCardClass(currentPlayer1Card)
+    //reset the classlist to blank card
+    displayCardOne.classList("back-red")
+
+   displayCardOne.classList.add(cardClass1)
+
+   currentPlayer2Card = player2Cards.shift()
+    const cardClass2 = createCardClass(currentPlayer2Card)
+        //reset the classlist to blank card
+    displayCardTwo.classList.add(cardClass2)
+    whoWinsEachRound()
 }
 
 function whoWinsEachRound(){
     console.log(currentPlayer1Card)
+    console.log(currentPlayer2Card)
     if (currentPlayer1Card.value === currentPlayer2Card.value){
-         alert("you tied");
+        document.getElementById("p").textContent = "Shucks, Y'all Tied This Round :(";
          player1Cards.push(currentPlayer1Card)
          player2Cards.push(currentPlayer2Card)
      } else if (currentPlayer1Card.value > currentPlayer2Card.value){
-         alert("Player One Won This Round");
+       document.getElementById("p").textContent = "Player One Won This Round!";
         player1Cards.push(currentPlayer2Card)
         player1Cards.push(currentPlayer1Card)
      } else if (currentPlayer1Card.value < currentPlayer2Card.value){
-         alert("Player Two Won This Round");
+         document.getElementById("p").textContent = "Player Two Won This Round!";
         player2Cards.push(currentPlayer1Card)
         player2Cards.push(currentPlayer2Card)
-        
-     } 
-     console.log(currentPlayer1Card);
+     }
     }
 
 function whoWinsFinal(){
