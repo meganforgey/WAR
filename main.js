@@ -11,17 +11,17 @@ const playerDefinition = {
 };
 
  const cards = {
-    value : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-    suit : ["hearts", 'diamonds', 'clubs', 'spades']
+    value : [1, 2], //3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    suit : ["hearts"], //'diamonds', 'clubs', 'spades']
 }
 
 const deck = [];
 
 /*----- event listeners -----*/
-   const playBtn = document.querySelector(".play-button");
+    const playBtn = document.querySelector(".play-button");
     const nextRound = document.querySelector(".round-button");
-   playBtn.addEventListener('click', play);
-    nextRound.addEventListener('click', findCurrent1Card);
+    playBtn.addEventListener('click', play);
+    nextRound.addEventListener('click', playTwo);
    
 
 
@@ -39,12 +39,20 @@ function makeDeck (cardData){
 }
 //console.log(deck)
 
+function playTwo(){
+    findCurrent1Card();
+    findCurrent2Card();
+    whoWinsEachRound();
+    whoWinsFinal();
+}
+
 function deal(){ console.log(deck.length)
     for (let i =0; i<deck.length; i++){
         if (i % 2 === 0){
             player1Cards.push(deck[i])
         } else { 
             player2Cards.push(deck[i])
+
         }
     }
 
@@ -68,13 +76,6 @@ function shuffle(cardData) {
 // /*----- functions -----*/
 
 
-
-// whoWinsFinal 
-//After 26 rounds, take the highest score and declare a winner. Reload the gamepage. 
-// function whoWinsFinal(){
-
-
-
 //  eachRound function need to select the first indexed element from both arrays and compare it to that same index
 //from player2's array, go through that process 26 times, so that index 1 of player 1 and player 2 are always
 //compared with each other, if tie, just move on to next index
@@ -83,35 +84,47 @@ function shuffle(cardData) {
 
 function findCurrent1Card(){
     currentPlayer1Card = player1Cards.shift()
+    //console.log(currentPlayer1Card);
     return currentPlayer1Card;
 }
-findCurrent1Card;
-console.log(currentPlayer1Card);
 
 function findCurrent2Card(){
     currentPlayer2Card = player2Cards.shift()
+    //console.log(currentPlayer2Card);
     return currentPlayer2Card;
 }
-findCurrent2Card;
-console.log(currentPlayer2Card);
 
-// function whoWinsEachRound(){
-//     if (player1Cards.value === player2Cards.value){
-//         alert("you tied")
-//     } if 
-//     console.log("you gots it");}
-// //     if (player1Card.value > player2Card.value){
-// //         document.getElementById
-// //     }
+function whoWinsEachRound(){
+    console.log(currentPlayer1Card)
+    if (currentPlayer1Card.value === currentPlayer2Card.value){
+         alert("you tied");
+         player1Cards.push(currentPlayer1Card)
+         player2Cards.push(currentPlayer2Card)
+     } else if (currentPlayer1Card.value > currentPlayer2Card.value){
+         alert("Player One Won This Round");
+        player1Cards.push(currentPlayer2Card)
+        player1Cards.push(currentPlayer1Card)
+     } else if (currentPlayer1Card.value < currentPlayer2Card.value){
+         alert("Player Two Won This Round");
+        player2Cards.push(currentPlayer1Card)
+        player2Cards.push(currentPlayer2Card)
+        
+     } 
+     console.log(currentPlayer1Card);
+    }
 
+function whoWinsFinal(){
+    if (player1Cards.length === 0){
+        alert("Player 2 Won! Clicking OK will reload the game.")
+        location.reload()
+    } else if (player2Cards.length === 0) {
+        alert("Player 1 Won!, Clicking OK will reload the game.")
+        location.reload()
+    }
+}
 
-// Play Function Takes in two arguments- each player's array of cards For each array, pick a random card from 
-//it Call showFrontOfCard function passing these two variables (random cards) as arguments Call 
-//whoWinsEachRound function, passing these two variables (random cards) as arguments Call whoWinsFinal 
-//function, adding in the players cards array.length
 function play(player1Cards, player2Cards) {
     makeDeck(cards);
     shuffle();
     deal();
-
 }
