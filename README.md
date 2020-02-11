@@ -7,7 +7,7 @@ https://www.figma.com/file/xEOarnsGlOitzdXjdmpTAo/War?node-id=0%3A1
 # War
 War is a card game that is typically played by two games. Since there are no choices in the game, and all outcomes are random, game designer says that it cannot be considered a game by some definitions.
 
-*Anyway*
+*Anyway...*
 
 This game of war is played by giving each player 26 cards from a shuffled deck. When the next round button is clicked, two cards appear on the screen, and are evaluated which one's value is greater. The winner receives both cards, and they are put into their deck. When a player gets all 52 cards/when the other player has 0 cards, the game is over, and the player with 52 cards wins.
 
