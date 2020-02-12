@@ -1,20 +1,18 @@
-// /*----- global variables -----*/
+/*----- global variables -----*/
 let player1Cards = [];
 let player2Cards = [];
 let winner = null;
 let currentPlayer1Card;
 let currentPlayer2Card;
 
-// const playerDefinition = {
-//     '1' : 'Player One',
-//     '-1' : 'Player Two',
-// };
-
  const cards = {
     value : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-    suit : ["hearts", 'diamonds', 'clubs', 'spades']
+    suit : ['hearts', 'diamonds', 'clubs', 'spades']
 }
 const deck = [];
+
+let player1Score = document.getElementById("score-player-one")
+let player2Score = document.getElementById("score-player-two")
 
 /*----- cached elements-----*/
 const displayCardOne = document.getElementById("player1-card-back")
@@ -25,11 +23,9 @@ const displayCardTwo = document.getElementById("player2-card-back")
     const playBtn = document.querySelector(".play-button");
     const nextRound = document.querySelector(".round-button");
     playBtn.addEventListener('click', play);
-    nextRound.addEventListener('click', playTwo);
-
+    nextRound.addEventListener('click', playNextRound);
 
  /*----- functions -----*/
-//function that takes a value and a suit and constructs a card from it
 function makeDeck (cardData){
     for (let i = 0; i<cardData.suit.length; i++ ){
         for (let v = 0; v<cardData.value.length; v++){
@@ -42,19 +38,21 @@ function makeDeck (cardData){
     }
 }
 
-//need to rename this
-function playTwo(){
+function playNextRound(){
     removeBackCardClass();
     currentCards();
     whoWinsFinal();
 }
+
 
 function removeBackCardClass(){
     displayCardOne.classList.remove("back-red")
     displayCardTwo.classList.remove("back-red")
 }
 
-function deal(){ console.log(deck.length)
+
+function deal() { 
+    console.log(deck.length)
     for (let i =0; i<deck.length; i++){
         if (i % 2 === 0){
             player1Cards.push(deck[i])
@@ -63,7 +61,8 @@ function deal(){ console.log(deck.length)
         }
     }
 }
-//shuffle the deck and put those values into player1 and player2 arrays
+
+
 function shuffle(cardData) {
         for (let i = deck.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -72,11 +71,9 @@ function shuffle(cardData) {
         return deck;
     }
 
+
 function createCardClass(card) {
-    console.log(card);
     const suit = card.suit[0];
-    
-    console.log(suit)
     let name = ""
     if (card.value === 1){
         name = "A"
@@ -91,53 +88,61 @@ function createCardClass(card) {
     } else if(card.value === 13){
         name = "K"
     }
-    console.log(suit + name)
     const cardClass = suit + name;
     return cardClass;
 }
 
-function currentCards(){
+
+function currentCards() {
     currentPlayer1Card = player1Cards.shift()
     const cardClass1 = createCardClass(currentPlayer1Card)
-    //reset the classlist to blank card
-    displayCardOne.classList("back-red")
-
-   displayCardOne.classList.add(cardClass1)
-
+    displayCardOne.classList = "card";
+    displayCardOne.classList.add(cardClass1)
    currentPlayer2Card = player2Cards.shift()
     const cardClass2 = createCardClass(currentPlayer2Card)
-        //reset the classlist to blank card
-    displayCardTwo.classList.add(cardClass2)
+        displayCardTwo.classList = "card";
+         displayCardTwo.classList.add(cardClass2)
     whoWinsEachRound()
 }
 
-function whoWinsEachRound(){
+
+function whoWinsEachRound() {
     console.log(currentPlayer1Card)
     console.log(currentPlayer2Card)
     if (currentPlayer1Card.value === currentPlayer2Card.value){
         document.getElementById("p").textContent = "Shucks, Y'all Tied This Round :(";
          player1Cards.push(currentPlayer1Card)
          player2Cards.push(currentPlayer2Card)
+         updateScore()
      } else if (currentPlayer1Card.value > currentPlayer2Card.value){
        document.getElementById("p").textContent = "Player One Won This Round!";
         player1Cards.push(currentPlayer2Card)
         player1Cards.push(currentPlayer1Card)
+        updateScore()
      } else if (currentPlayer1Card.value < currentPlayer2Card.value){
          document.getElementById("p").textContent = "Player Two Won This Round!";
         player2Cards.push(currentPlayer1Card)
         player2Cards.push(currentPlayer2Card)
+        updateScore()
      }
     }
 
-function whoWinsFinal(){
+    function updateScore() {
+        player1Score.innerText = player1Cards.length;
+        player2Score.innerText = player2Cards.length;
+    }
+
+
+function whoWinsFinal() {
     if (player1Cards.length === 0){
-        alert("Player 2 Won! Clicking OK will reload the game.")
-        location.reload()
+        document.getElementById("table").textContent = "Player 2 Won! The game will reload after 5 seconds";
+        setTimeout(function () { location.reload(1); }, 5000);
     } else if (player2Cards.length === 0) {
-        alert("Player 1 Won!, Clicking OK will reload the game.")
-        location.reload()
+        document.getElementById("table").textContent = "Player 1 Won! The game will reload after 5 seconds";
+        setTimeout(function () { location.reload(1); }, 5000);  
     }
 }
+
 
 function play(player1Cards, player2Cards) {
     makeDeck(cards);
