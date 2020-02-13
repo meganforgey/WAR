@@ -5,7 +5,7 @@ Project 1
 https://www.figma.com/file/xEOarnsGlOitzdXjdmpTAo/War?node-id=0%3A1
 
 # War
-War is a card game that is typically played by two games. Since there are no choices in the game, and all outcomes are random, game designer says that it cannot be considered a game by some definitions.
+War is a card game that is typically played by two games. Since there are no choices in the game, and all outcomes are random, game designer Greg Costikyan says that it cannot be considered a game by some definitions.
 
 *Anyway...*
 
@@ -17,7 +17,9 @@ This game of war is played by giving each player 26 cards from a shuffled deck. 
 JavaScript, HTML, and CSS.
 
 ## Getting Started
-In this section include the link to your deployed game and any instructions you deem important.
+https://meganforgey.github.io/WAR/
+To start the game, click Let's Play! to shuffle the cards and hand them out to each player. Then click, next round to get the game started. I
 
 ## Next Steps
-Planned future enhancements (icebox items).
+Next, I would like to include a visual representation of the player's cards, and when a player wins, show the two cards "flying" to their deck.
+
