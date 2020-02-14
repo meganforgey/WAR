@@ -13,6 +13,10 @@ This game of war is played by giving each player 26 cards from a shuffled deck. 
 
 ## Screenshots
 ![Screenshot of Game] (https://imgur.com/a/Jb5WXki)
+Format: ![Alt Text](url)
+
+![Screenshot](https://imgur.com/a/Jb5WXki)
+Format: ![Alt Text](url)
 
 
 ## Technologies Used
