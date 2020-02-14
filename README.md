@@ -12,12 +12,7 @@ War is a card game that is typically played by two games. Since there are no cho
 This game of war is played by giving each player 26 cards from a shuffled deck. When the next round button is clicked, two cards appear on the screen, and are evaluated which one's value is greater. The winner receives both cards, and they are put into their deck. When a player gets all 52 cards/when the other player has 0 cards, the game is over, and the player with 52 cards wins.
 
 ## Screenshots
-![Screenshot of Game] (https://imgur.com/a/Jb5WXki)
-Format: ![Alt Text](url)
-
-![Screenshot](https://imgur.com/a/Jb5WXki)
-Format: ![Alt Text](url)
-
+(https://imgur.com/a/Jb5WXki)
 
 ## Technologies Used
 JavaScript, HTML, and CSS.
