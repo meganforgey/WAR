@@ -5,9 +5,10 @@ let winner = null;
 let currentPlayer1Card;
 let currentPlayer2Card;
 
+//using fewer cards for presentation
  const cards = {
-    value : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
-    suit : ['hearts', 'diamonds', 'clubs', 'spades']
+    value : [1, 2, 3, 4], // 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    suit : ['hearts'] //, 'diamonds', 'clubs', 'spades']
 }
 const deck = [];
 
